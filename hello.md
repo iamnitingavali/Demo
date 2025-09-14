@@ -1,19 +1,21 @@
-# i have just created my ansible project script
----
-- name: installation LEMP on amazon linux
-  hosts: localhost
-  become: yes
-  vars:
-   web_pkg: nginx
-   db_pkg: mariadb105-server
-   php_pkg:
+# i have just created one ansible project script using this scipt you csn install 2-tier Architecture on multiple servers.
+
+# First create variables
+    - name: installation LEMP on amazon linux
+     hosts: localhost
+     become: yes
+    vars:
+    web_pkg: nginx
+    db_pkg: mariadb105-server
+    php_pkg:
     - php
     - php-fpm
-   web_service: nginx
-   db_service: mariadb105-server
-   php_service: php-fpm
-   php_file_path: /usr/share/nginx/html/index.php
-  tasks:
+    web_service: nginx
+    db_service: mariadb105-server
+    php_service: php-fpm
+   php_file_path:/usr/share/nginx/html/index.php
+# create task
+    tasks:
     - name: install webserver
       ansible.builtin.apt:
         name: "{{web_pkg}}"
